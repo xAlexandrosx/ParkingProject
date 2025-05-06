@@ -1,12 +1,22 @@
 package org.example;
 
+import org.example.feeadder.FeeAdder;
+import org.example.feeadder.FeeAdderImpl;
 import org.example.model.Car;
 import org.example.parking.Parking;
+import org.example.parking.parkingdao.ParkingDao;
+import org.example.parking.parkingdao.ParkingDaoImpl;
+import org.example.timesimulator.TimeSimulator;
+
 import java.util.Scanner;
+
+import static org.example.timesimulator.TimeSimulator.localTime;
 
 public class Main {
     public static void main(String[] args) {
-        Parking parking = new Parking(2, 2, 10, 2);
+        Parking parking = new Parking(2, 2);
+        ParkingDao parkingDao = new ParkingDaoImpl(parking);
+        FeeAdder feeAdder = new FeeAdderImpl(10, 2, parking);
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -29,9 +39,9 @@ public class Main {
                     Car.CarType type = Car.CarType.valueOf(typeStr.toUpperCase());
 
                     Car car = new Car(reg, type);
-                    car.setTimeOfArrival(parking.getLocalTime());
+                    car.setTimeOfArrival(localTime);
 
-                    parking.registerCarEntry(car);
+                    parkingDao.addCar(car);
                 }
                 case 2 -> {
                     System.out.print("Enter registration to remove: ");
@@ -39,15 +49,15 @@ public class Main {
 
                     Car car = findCarByReg(parking, reg);
                     if (car != null) {
-                        parking.unregisterCar(car);
+                        parkingDao.removeCar(car);
                     } else {
                         System.out.println("Car not found.");
                     }
                 }
                 case 3 -> parking.listCars();
                 case 4 -> {
-                    parking.setLocalTime(parking.getLocalTime().plusHours(1));
-                    parking.timeForward();
+                    TimeSimulator.forwardTime();
+                    feeAdder.checkParking();
                     System.out.println("Time advanced by 1 hour.");
                 }
                 case 5 -> {
