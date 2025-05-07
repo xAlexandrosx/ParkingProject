@@ -1,5 +1,7 @@
 ##### Lista rzeczy do zrobienia:
 - Diagram UML
+- w main jest obecnie pomocnicza metoda statyczna do wyszukiwania pojazdów po numerze rejestracyjnym. Jest to tymczasowe rozwiązanie, trzeba zrobić refactoring i przerzucić ją do innej, bardziej odpowiedniej klasy.
+- także w main, w opcji 5 jest pętla wypisująca zawartość historyManagera. Refactoring będzie polegał na stworzeniu metody do wypisywania historii w samym managerze. Przy okazji refactor endOfDayReport aby uniknąć powielania kodu.
 
 #### Parking
 służy do przechowywania obiektów i conajwyżej wypisywania jakie pojazdy są zaparkowane
