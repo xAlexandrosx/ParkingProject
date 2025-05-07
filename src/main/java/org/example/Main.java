@@ -2,12 +2,15 @@ package org.example;
 
 import org.example.feeadder.FeeAdder;
 import org.example.feeadder.FeeAdderImpl;
+import org.example.historymanager.HistoryManager;
+import org.example.historymanager.HistoryManagerImpl;
 import org.example.model.Car;
 import org.example.parking.Parking;
 import org.example.parking.parkingdao.ParkingDao;
 import org.example.parking.parkingdao.ParkingDaoImpl;
 import org.example.timesimulator.TimeSimulator;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static org.example.timesimulator.TimeSimulator.localTime;
@@ -15,7 +18,8 @@ import static org.example.timesimulator.TimeSimulator.localTime;
 public class Main {
     public static void main(String[] args) {
         Parking parking = new Parking(2, 2);
-        ParkingDao parkingDao = new ParkingDaoImpl(parking);
+        HistoryManager historyManager = new HistoryManagerImpl();
+        ParkingDao parkingDao = new ParkingDaoImpl(parking, historyManager);
         FeeAdder feeAdder = new FeeAdderImpl(10, 2, parking);
         Scanner scanner = new Scanner(System.in);
 
@@ -25,7 +29,8 @@ public class Main {
             System.out.println("2. Unregister a car");
             System.out.println("3. List parked cars");
             System.out.println("4. Advance time by 1 hour");
-            System.out.println("5. Exit");
+            System.out.println("5. Display parking history so far");
+            System.out.println("6. Exit");
             System.out.print("Select option: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -61,6 +66,13 @@ public class Main {
                     System.out.println("Time advanced by 1 hour.");
                 }
                 case 5 -> {
+                    List<String> history = historyManager.getHistory();
+                    for (String entry : history) {
+                        System.out.println(entry);
+                    }
+                }
+                case 6 -> {
+                    System.out.println(historyManager.generateEndOfDayReport());
                     System.out.println("Exiting.");
                     return;
                 }
