@@ -51,7 +51,7 @@ public class Parking {
         System.out.println("Passenger car spots ("
                 + passengerCarSpots.size()
                 + "/" + passengerCarSpotsMax
-                + "):");
+                + "):\n");
 
         for (Car car : passengerCarSpots) {
             System.out.println(car.toString());
@@ -61,7 +61,7 @@ public class Parking {
         System.out.println("Delivery car spots ("
                 + deliveryCarSpots.size()
                 + "/" + deliveryCarSpotsMax
-                + "):");
+                + "):\n");
 
         for (Car car : deliveryCarSpots) {
             System.out.println(car.toString());
