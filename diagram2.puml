@@ -1,0 +1,155 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+title Filip Kamiński, Michał Spaliński, Aleksander Kozłowski
+
+class Main {
+  + main(String[] args) : void
+}
+
+interface FeeAdder {
+  # checkParking() : void
+  # addFee(Car car) : void
+}
+
+class FeeAdderImpl {
+  - feeValue : int
+  - freeHours : int
+  - parking : Parking
+  + getFeeValue() : int
+  + setFeeValue(int feeValue) : void
+  + getFreeHours() : int
+  + setFreeHours(int freeHours) : void
+  + getParking() : Parking
+  + setParking(Parking parking) : void
+  + checkParking() : void
+  + addFee(Car car) : void
+  - checkFeeEligible(Car car) : boolean
+}
+
+interface HistoryManager {
+  # addToHistory(Car car, String action) : void
+  # generateEndOfDayReport() : String
+  # getHistory() : void
+}
+
+class HistoryManagerImpl {
+  - history : List<String>
+  - carsParked : List<Car>
+  - totalBonusFees : int
+  + getHistory() : void
+  + setHistory(List<String> history) : void
+  + getCarsParked() : List<Car>
+  + setCarsParked(List<Car> carsParked) : void
+  + getTotalBonusFees() : int
+  + setTotalBonusFees(int totalBonusFees) : void
+  + addToHistory(Car car, String action) : void
+  + generateEndOfDayReport() : String
+}
+
+class Menu {
+  - parking : Parking
+  - historyManager : HistoryManager
+  - parkingDao : ParkingDao
+  - feeAdder : FeeAdder
+  - scanner : Scanner
+  + beginParking() : void
+}
+
+abstract class Car {
+  # registration : String
+  # timeOfArrival : LocalDateTime
+  # carType : CarType
+  # bonusFee : int
+  + getRegistration() : String
+  + setRegistration(String registration) : void
+  + getTimeOfArrival() : LocalDateTime
+  + setTimeOfArrival(LocalDateTime timeOfArrival) : void
+  + getCarType() : CarType
+  + setCarType(CarType carType) : void
+  + getBonusFee() : int
+  + setBonusFee(int bonusFee) : void
+  + equals(Object o) : boolean
+  + hashCode() : int
+  + toString() : String
+  + getCode() : String
+}
+
+class Delivery {
+
+}
+
+class Passenger {
+
+}
+
+class Parking {
+  - passengerCarSpots : List<Car>
+  - passengerCarSpotsMax : int
+  - deliveryCarSpots : List<Car>
+  - deliveryCarSpotsMax : int
+  + getPassengerCarSpots() : List<Car>
+  + setPassengerCarSpots(List<Car> passengerCarSpots) : void
+  + getPassengerCarSpotsMax() : int
+  + setPassengerCarSpotsMax(int passengerCarSpotsMax) : void
+  + getDeliveryCarSpots() : List<Car>
+  + setDeliveryCarSpots(List<Car> deliveryCarSpots) : void
+  + getDeliveryCarSpotsMax() : int
+  + setDeliveryCarSpotsMax(int deliveryCarSpotsMax) : void
+  + listCars() : void
+}
+
+interface ParkingDao {
+  + findCarByReg(Parking parking, String reg) : Car
+  + addCar(Car car) : void
+  + removeCar(Car car) : void
+}
+
+class ParkingDaoImpl {
+  - parking : Parking
+  - historyManager : HistoryManager
+  + getParking() : Parking
+  + setParking(Parking parking) : void
+  + getHistoryManager() : HistoryManager
+  + setHistoryManager(HistoryManager historyManager) : void
+  + addCar(Car car) : void
+  + removeCar(Car car) : void
+}
+
+class TimeSimulator {
+  + forwardTime() : void
+  + getFormattedLocalTime() : String
+}
+
+FeeAdderImpl ..|> FeeAdder
+HistoryManagerImpl ..|> HistoryManager
+HistoryManagerImpl --> "*" Car : carsParked
+Delivery --|> Car
+Passenger --|> Car
+ParkingDaoImpl ..|> ParkingDao
+ParkingDaoImpl --> Parking
+ParkingDaoImpl --> HistoryManager
+Car --> CarType
+Menu *-- Parking
+Menu *-- HistoryManager
+Menu *-- ParkingDao
+Menu *-- FeeAdder
+FeeAdderImpl --> Parking
+ParkingDao ..> Parking
+ParkingDao ..> Car
+ParkingDaoImpl ..> Car
+HistoryManager ..> Car
+FeeAdderImpl ..> Car
+FeeAdder ..> Car
+Parking *-- "0..*" Car : passengerCarSpots
+Parking *-- "0..*" Car : deliveryCarSpots
+Main ..> Menu
+
+
+enum CarType {
+  PASSENGER("p")
+  DELIVERY("d")
+}
+
+
+@enduml

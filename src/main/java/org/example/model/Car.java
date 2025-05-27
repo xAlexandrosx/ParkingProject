@@ -5,11 +5,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Car {
-    private String registration;
-    private LocalDateTime timeOfArrival;
-    private CarType carType;
-    private int bonusFee;
+public abstract class Car {
+    protected String registration;
+    protected LocalDateTime timeOfArrival;
+    protected CarType carType;
+    protected int bonusFee;
 
     public Car(String registration, CarType carType) {
         this.registration = registration;

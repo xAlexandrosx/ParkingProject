@@ -22,4 +22,9 @@ klasa modelowa. ma tylko podstawowe pola, gettery, settery itd.
 statyczne pole localtime i metoda do symulowania upływania czasu.
 
 #### Main
-klasa rozruchowa z konsolowym menu.
+Uruchamia system parkingowy przez Menu. 
+Nie posiada stanu ani logiki biznesowej.
+
+#### Menu
+Główna klasa uruchamiająca system.
+void beginParking() – uruchamia interaktywne menu parkingowe
