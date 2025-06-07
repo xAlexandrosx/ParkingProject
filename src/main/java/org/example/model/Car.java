@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.timesimulator.TimeSimulator;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +13,11 @@ public abstract class Car {
     protected CarType carType;
     protected int bonusFee;
 
-    public Car(String registration, CarType carType) {
+    public Car(String registration, CarType carType, int bonusFee) {
         this.registration = registration;
         this.timeOfArrival = LocalDateTime.now();
         this.carType = carType;
-        this.bonusFee = 0;
+        this.bonusFee = bonusFee;
     }
 
     public String getRegistration() {
@@ -68,6 +70,7 @@ public abstract class Car {
         return "Registration: " + registration +
                 "\nType: " + carType +
                 "\nTime of Arrival: " + timeOfArrival.format(formatter) +
+                "\nCurrent Time: " + TimeSimulator.getFormattedLocalTime() +
                 "\nBonus Fee: " + bonusFee + " zł";
     }
 
