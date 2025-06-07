@@ -1,5 +1,6 @@
 package org.example.menu;
 
+import org.example.exceptions.DuplicateRegistrationException;
 import org.example.feeadder.FeeAdder;
 import org.example.feeadder.FeeAdderImpl;
 import org.example.historymanager.HistoryManager;
@@ -11,6 +12,7 @@ import org.example.parking.Parking;
 import org.example.parking.parkingdao.ParkingDao;
 import org.example.parking.parkingdao.ParkingDaoImpl;
 import org.example.timesimulator.TimeSimulator;
+import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
@@ -33,8 +35,15 @@ public class Menu {
             System.out.println("5. Display parking history so far");
             System.out.println("6. Exit");
             System.out.print("Select option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1 -> {
@@ -44,10 +53,23 @@ public class Menu {
                     System.out.println("1. Passenger");
                     System.out.println("2. Delivery");
                     System.out.print("Select option: ");
-                    int type = scanner.nextInt();
-                    scanner.nextLine();
+                    int type;
+                    try {
+                        type = scanner.nextInt();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Registration failed: invalid car type input.");
+                        scanner.nextLine();
+                        continue;
+                    }
 
-                    Car car = handleUserChoice(type, reg);
+                    Car car;
+                    try {
+                        car = handleUserChoice(type, reg, parking);
+                    } catch (DuplicateRegistrationException e) {
+                        System.out.println("Registration failed: " + e.getMessage());
+                        continue;
+                    }
 
                     if (car != null) {
                         car.setTimeOfArrival(localTime);
@@ -85,8 +107,12 @@ public class Menu {
             }
         }
     }
+    
+    private static Car handleUserChoice(int type, String reg, Parking parking) {
+        if (ParkingDao.findCarByReg(parking, reg) != null) {
+            throw new DuplicateRegistrationException("Car with registration " + reg + " is already parked.");
+        }
 
-    private static Car handleUserChoice(int type, String reg) {
         return switch (type) {
             case 1 -> new Passenger(reg);
             case 2 -> new Delivery(reg);
