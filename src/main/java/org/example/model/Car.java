@@ -1,21 +1,23 @@
 package org.example.model;
 
+import org.example.timesimulator.TimeSimulator;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Car {
-    private String registration;
-    private LocalDateTime timeOfArrival;
-    private CarType carType;
-    private int bonusFee;
+public abstract class Car {
+    protected String registration;
+    protected LocalDateTime timeOfArrival;
+    protected CarType carType;
+    protected int bonusFee;
 
-    public Car(String registration, CarType carType) {
+    public Car(String registration, CarType carType, int bonusFee) {
         this.registration = registration;
         this.timeOfArrival = LocalDateTime.now();
         this.carType = carType;
-        this.bonusFee = 0;
+        this.bonusFee = bonusFee;
     }
 
     public String getRegistration() {
@@ -68,13 +70,16 @@ public class Car {
         return "Registration: " + registration +
                 "\nType: " + carType +
                 "\nTime of Arrival: " + timeOfArrival.format(formatter) +
+                "\nCurrent Time: " + TimeSimulator.getFormattedLocalTime() +
                 "\nBonus Fee: " + bonusFee + " zł";
     }
 
 
     public enum CarType {
         PASSENGER("p"),
-        DELIVERY("d");
+        DELIVERY("d"),
+        MOTORBIKE("m"),
+        ELECTRIC("e");
 
         private final String code;
 

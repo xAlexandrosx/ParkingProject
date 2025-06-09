@@ -37,6 +37,8 @@ public class ParkingDaoImpl implements ParkingDao {
         List<Car> allCars = new ArrayList<>();
         allCars.addAll(parking.getPassengerCarSpots());
         allCars.addAll(parking.getDeliveryCarSpots());
+        allCars.addAll(parking.getMotorbikeSpots());
+        allCars.addAll(parking.getElectricCarSpots());
 
         for (Car c : allCars) {
             if (c.getRegistration().equalsIgnoreCase(car.getRegistration())) {
@@ -56,6 +58,16 @@ public class ParkingDaoImpl implements ParkingDao {
             System.out.println("Error. All delivery car spots occupied.");
             return;
         }
+        if (car.getCarType() == Car.CarType.MOTORBIKE
+                && parking.getMotorbikeSpots().size() == parking.getMotorbikeSpotsMax()) {
+            System.out.println("Error. All motorbike spots occupied.");
+            return;
+        }
+        if (car.getCarType() == Car.CarType.ELECTRIC
+                && parking.getElectricCarSpots().size() == parking.getElectricCarSpotsMax()) {
+            System.out.println("Error. All electric car spots occupied.");
+            return;
+        }
 
         if (car.getCarType() == Car.CarType.PASSENGER) {
             List<Car> cars = parking.getPassengerCarSpots();
@@ -67,6 +79,16 @@ public class ParkingDaoImpl implements ParkingDao {
             List<Car> cars = parking.getDeliveryCarSpots();
             cars.add(car);
             parking.setDeliveryCarSpots(cars);
+        }
+        if (car.getCarType() == Car.CarType.MOTORBIKE) {
+            List<Car> cars = parking.getMotorbikeSpots();
+            cars.add(car);
+            parking.setMotorbikeSpots(cars);
+        }
+        if (car.getCarType() == Car.CarType.ELECTRIC) {
+            List<Car> cars = parking.getElectricCarSpots();
+            cars.add(car);
+            parking.setElectricCarSpots(cars);
         }
 
         historyManager.addToHistory(car, "enter");
@@ -87,6 +109,16 @@ public class ParkingDaoImpl implements ParkingDao {
                 List<Car> cars = parking.getDeliveryCarSpots();
                 cars.remove(car);
                 parking.setDeliveryCarSpots(cars);
+            }
+            if (car.getCarType() == Car.CarType.MOTORBIKE) {
+                List<Car> cars = parking.getMotorbikeSpots();
+                cars.remove(car);
+                parking.setMotorbikeSpots(cars);
+            }
+            if (car.getCarType() == Car.CarType.ELECTRIC) {
+                List<Car> cars = parking.getElectricCarSpots();
+                cars.remove(car);
+                parking.setElectricCarSpots(cars);
             }
 
             historyManager.addToHistory(car, "exit");

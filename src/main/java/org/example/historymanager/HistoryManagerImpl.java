@@ -11,8 +11,10 @@ public class HistoryManagerImpl implements HistoryManager {
     private List<Car> carsParked = new ArrayList<>();
     private int totalBonusFees = 0;
 
-    public List<String> getHistory() {
-        return history;
+    public void getHistory() {
+        for (String entry : history) {
+            System.out.println(entry);
+        }
     }
 
     public void setHistory(List<String> history) {

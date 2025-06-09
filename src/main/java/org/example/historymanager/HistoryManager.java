@@ -7,5 +7,5 @@ import java.util.List;
 public interface HistoryManager {
     void addToHistory(Car car, String action);
     String generateEndOfDayReport();
-    List<String> getHistory();
+    void getHistory();
 }

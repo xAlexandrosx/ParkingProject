@@ -48,6 +48,9 @@ public class FeeAdderImpl implements FeeAdder {
         List<Car> cars = new ArrayList<>();
         cars.addAll(parking.getPassengerCarSpots());
         cars.addAll(parking.getDeliveryCarSpots());
+        cars.addAll(parking.getMotorbikeSpots());
+        cars.addAll(parking.getElectricCarSpots());
+        
         for (Car car : cars) {
             addFee(car);
         }
