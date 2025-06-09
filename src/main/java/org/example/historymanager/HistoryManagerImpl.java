@@ -17,26 +17,6 @@ public class HistoryManagerImpl implements HistoryManager {
         }
     }
 
-    public void setHistory(List<String> history) {
-        this.history = history;
-    }
-
-    public List<Car> getCarsParked() {
-        return carsParked;
-    }
-
-    public void setCarsParked(List<Car> carsParked) {
-        this.carsParked = carsParked;
-    }
-
-    public int getTotalBonusFees() {
-        return totalBonusFees;
-    }
-
-    public void setTotalBonusFees(int totalBonusFees) {
-        this.totalBonusFees = totalBonusFees;
-    }
-
     public void addToHistory(Car car, String action) {
         StringBuilder sb = new StringBuilder();
         sb.append(getFormattedLocalTime())

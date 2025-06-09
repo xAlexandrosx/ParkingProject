@@ -19,30 +19,6 @@ public class FeeAdderImpl implements FeeAdder {
         this.parking = parking;
     }
 
-    public int getFeeValue() {
-        return feeValue;
-    }
-
-    public void setFeeValue(int feeValue) {
-        this.feeValue = feeValue;
-    }
-
-    public int getFreeHours() {
-        return freeHours;
-    }
-
-    public void setFreeHours(int freeHours) {
-        this.freeHours = freeHours;
-    }
-
-    public Parking getParking() {
-        return parking;
-    }
-
-    public void setParking(Parking parking) {
-        this.parking = parking;
-    }
-
     @Override
     public void checkParking() {
         List<Car> cars = new ArrayList<>();

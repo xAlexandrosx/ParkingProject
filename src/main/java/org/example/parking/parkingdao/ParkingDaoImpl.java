@@ -16,22 +16,6 @@ public class ParkingDaoImpl implements ParkingDao {
         this.historyManager = historyManager;
     }
 
-    public Parking getParking() {
-        return parking;
-    }
-
-    public void setParking(Parking parking) {
-        this.parking = parking;
-    }
-
-    public HistoryManager getHistoryManager() {
-        return historyManager;
-    }
-
-    public void setHistoryManager(HistoryManager historyManager) {
-        this.historyManager = historyManager;
-    }
-
     @Override
     public void addCar(Car car) {
         List<Car> allCars = new ArrayList<>();

@@ -24,10 +24,6 @@ public abstract class Car {
         return registration;
     }
 
-    public void setRegistration(String registration) {
-        this.registration = registration;
-    }
-
     public LocalDateTime getTimeOfArrival() {
         return timeOfArrival;
     }
@@ -38,10 +34,6 @@ public abstract class Car {
 
     public CarType getCarType() {
         return carType;
-    }
-
-    public void setCarType(CarType carType) {
-        this.carType = carType;
     }
 
     public int getBonusFee() {

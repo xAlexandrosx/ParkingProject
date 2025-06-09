@@ -36,10 +36,6 @@ public class Parking {
         return passengerCarSpotsMax;
     }
 
-    public void setPassengerCarSpotsMax(int passengerCarSpotsMax) {
-        this.passengerCarSpotsMax = passengerCarSpotsMax;
-    }
-
     public List<Car> getDeliveryCarSpots() {
         return deliveryCarSpots;
     }
@@ -50,10 +46,6 @@ public class Parking {
 
     public int getDeliveryCarSpotsMax() {
         return deliveryCarSpotsMax;
-    }
-
-    public void setDeliveryCarSpotsMax(int deliveryCarSpotsMax) {
-        this.deliveryCarSpotsMax = deliveryCarSpotsMax;
     }
 
     public List<Car> getMotorbikeSpots() {
@@ -68,10 +60,6 @@ public class Parking {
         return motorbikeSpotsMax;
     }
 
-    public void setMotorbikeSpotsMax(int motorbikeSpotsMax) {
-        this.motorbikeSpotsMax = motorbikeSpotsMax;
-    }
-
     public List<Car> getElectricCarSpots() {
         return electricCarSpots;
     }
@@ -82,10 +70,6 @@ public class Parking {
 
     public int getElectricCarSpotsMax() {
         return electricCarSpotsMax;
-    }
-
-    public void setElectricCarSpotsMax(int electricCarSpotsMax) {
-        this.electricCarSpotsMax = electricCarSpotsMax;
     }
 
     public void listCars() {
