@@ -71,7 +71,7 @@ Uruchamia system parkingowy przez Menu. Nie posiada stanu ani logiki biznesowej.
 ##### Menu
 Główna klasa uruchamiająca system. 
 - void beginParking() – uruchamia interaktywne menu parkingowe. 
-- Car handleUserChoice() - metoda obsługująca wybór rodzaju rejestrowanego pojazdu przez użytkownika, zwraca obiekt klasy Car odpowiadający wybranemu rodzaju pojazdu.
+- Car handleUserChoice() - metoda obsługująca wybór rodzaju rejestrowanego pojazdu przez użytkownika, zwraca obiekt klasy Car odpowiadający wybranemu rodzajowi pojazdu.
 
 ##### Parking
 służy do przechowywania obiektów i conajwyżej wypisywania jakie pojazdy są zaparkowane
