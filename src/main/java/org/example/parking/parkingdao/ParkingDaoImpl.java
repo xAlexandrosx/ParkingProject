@@ -24,13 +24,6 @@ public class ParkingDaoImpl implements ParkingDao {
         allCars.addAll(parking.getMotorbikeSpots());
         allCars.addAll(parking.getElectricCarSpots());
 
-        for (Car c : allCars) {
-            if (c.getRegistration().equalsIgnoreCase(car.getRegistration())) {
-                System.out.println("Error. Car with " + car.getRegistration() + " already exists.");
-                return;
-            }
-        }
-
         if (car.getCarType() == Car.CarType.PASSENGER
                 && parking.getPassengerCarSpots().size() == parking.getPassengerCarSpotsMax()) {
             System.out.println("Error. All passenger car spots occupied.");
