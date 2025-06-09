@@ -21,7 +21,7 @@ import java.util.Scanner;
 import static org.example.timesimulator.TimeSimulator.localTime;
 
 public class Menu {
-    private Parking parking = new Parking(2, 2);
+    private Parking parking = new Parking(2, 2, 2, 2);
     private HistoryManager historyManager = new HistoryManagerImpl();
     private ParkingDao parkingDao = new ParkingDaoImpl(parking, historyManager);
     private FeeAdder feeAdder = new FeeAdderImpl(10, 2, parking);

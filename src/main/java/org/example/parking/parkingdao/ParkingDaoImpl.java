@@ -98,7 +98,9 @@ public class ParkingDaoImpl implements ParkingDao {
     @Override
     public void removeCar(Car car) {
         if (parking.getPassengerCarSpots().contains(car)
-                || parking.getDeliveryCarSpots().contains(car)) {
+                || parking.getDeliveryCarSpots().contains(car)
+                || parking.getMotorbikeSpots().contains(car)
+                || parking.getElectricCarSpots().contains(car)) {
             if (car.getCarType() == Car.CarType.PASSENGER) {
                 List<Car> cars = parking.getPassengerCarSpots();
                 cars.remove(car);
