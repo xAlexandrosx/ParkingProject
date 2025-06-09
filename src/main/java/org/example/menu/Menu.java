@@ -8,6 +8,8 @@ import org.example.historymanager.HistoryManagerImpl;
 import org.example.model.Car;
 import org.example.model.Delivery;
 import org.example.model.Passenger;
+import org.example.model.Motorbike;
+import org.example.model.Electric;
 import org.example.parking.Parking;
 import org.example.parking.parkingdao.ParkingDao;
 import org.example.parking.parkingdao.ParkingDaoImpl;
@@ -49,9 +51,11 @@ public class Menu {
                 case 1 -> {
                     System.out.print("Enter registration: ");
                     String reg = scanner.nextLine();
-                    System.out.println("Car type (PASSENGER/DELIVERY):");
+                    System.out.println("Car type (PASSENGER/DELIVERY/MOTORBIKE/ELECTRIC):");
                     System.out.println("1. Passenger");
                     System.out.println("2. Delivery");
+                    System.out.println("3. Motorbike");
+                    System.out.println("4. Eletric");
                     System.out.print("Select option: ");
                     int type;
                     try {
@@ -116,6 +120,8 @@ public class Menu {
         return switch (type) {
             case 1 -> new Passenger(reg);
             case 2 -> new Delivery(reg);
+            case 3 -> new Motorbike(reg);
+            case 4 -> new Electric(reg);
             default -> null;
         };
     }

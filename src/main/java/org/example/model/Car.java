@@ -77,7 +77,9 @@ public abstract class Car {
 
     public enum CarType {
         PASSENGER("p"),
-        DELIVERY("d");
+        DELIVERY("d"),
+        MOTORBIKE("m"),
+        ELECTRIC("e");
 
         private final String code;
 

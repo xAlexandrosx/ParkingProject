@@ -2,6 +2,6 @@ package org.example.model;
 
 public class Electric extends Car {
     public Electric(String registration) {
-        super(registration, CarType.Electric, 3);
+        super(registration, CarType.ELECTRIC, 3);
     }
 }
