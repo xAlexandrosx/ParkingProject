@@ -1,3 +1,29 @@
+##### Instrukcja uruchomienia projektu w IntelliJ IDEA
+
+Wymagania:
+- IDE (najlepiej IntelliJ IDEA)
+- JDK 24 (jeśli nie ma można zainstalować w ustawieniach IntelliJ IDEA, zębatka w prawym górnym rogu -> Project Structure -> rozwiń SDK: -> Download JDK -> Version: 24, Vendor: Oracle OpenJDK 24.0.1 -> Download)
+
+1. Przygotowanie projektu
+
+Rozpakuj archiwum do dowolnego folderu (np. Documents/parking-system/).
+
+2. Import do IntelliJ IDEA
+Otwórz IntelliJ IDEA.
+
+Wybierz "Open".
+
+Wskaż folder, w którym znajduje się rozpakowany projekt.
+
+Kliknij OK – IntelliJ załaduje projekt jako prosty projekt.
+
+3. Uruchomienie programu
+W panelu projektu znajdź i otwórz Main.java (z folderu src/main/java/org.example).
+
+Kliknij zieloną strzałkę obok metody main() → Run 'Main.main()'.
+
+Program uruchomi się i pokaże Ci się menu w konsoli.
+
 ##### Instukcja obsługi programu:
 Po uruchomieniu zobaczysz w konsoli menu główne:
 
